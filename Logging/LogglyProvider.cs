@@ -4,6 +4,6 @@ using System.Linq;
 using System.Text;
 
 namespace Logging {
-	class LogglyProvider {
+	public class LogglyProvider {
 	}
 }

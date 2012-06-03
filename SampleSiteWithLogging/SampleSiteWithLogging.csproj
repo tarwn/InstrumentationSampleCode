@@ -166,4 +166,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(SolutionDir)sensitive.config" "$(ProjectDir)\$(OutDir)sensitive.config"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

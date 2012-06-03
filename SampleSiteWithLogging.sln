@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSiteWithLogging", "Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{C60B8715-8246-4562-BC77-21647A82A014}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingTests", "LoggingTests\LoggingTests.csproj", "{D6B75BD7-CCA3-4332-9BE9-DF555EEF365F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensitiveSettings", "SensitiveSettings\SensitiveSettings.csproj", "{C94D93E0-F394-4CC7-82D3-A4C303405AF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{C60B8715-8246-4562-BC77-21647A82A014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60B8715-8246-4562-BC77-21647A82A014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60B8715-8246-4562-BC77-21647A82A014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6B75BD7-CCA3-4332-9BE9-DF555EEF365F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B75BD7-CCA3-4332-9BE9-DF555EEF365F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B75BD7-CCA3-4332-9BE9-DF555EEF365F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B75BD7-CCA3-4332-9BE9-DF555EEF365F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94D93E0-F394-4CC7-82D3-A4C303405AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94D93E0-F394-4CC7-82D3-A4C303405AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94D93E0-F394-4CC7-82D3-A4C303405AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94D93E0-F394-4CC7-82D3-A4C303405AF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
