@@ -20,7 +20,7 @@ namespace LoggingTests {
 				{"Method", "Log_BasicAnonymousObject_ExecutesHttpPostSuccessfully"}
 			};
 			bool wasSuccess = false;
-			var logger = new LogglyProvider(url);
+			var logger = new LogglyProvider(url, false);
 
 			logger.Log(message, (result) => wasSuccess = result.Success);
 

@@ -32,7 +32,7 @@ namespace SensitiveSettings {
 							   .Where(s => s.Length == 2);
 
 			foreach(string[] line in lines){
-				_settings.Add(line[0], line[1]);
+				_settings.Add(line[0].Trim(), line[1].Trim());
 			}
 		}
 
