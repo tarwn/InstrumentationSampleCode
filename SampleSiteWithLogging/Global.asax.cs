@@ -32,10 +32,36 @@ namespace SampleSiteWithLogging {
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
 
-			SensitiveSettings.SettingsManager.LoadFrom(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"bin\"));
-			ILogProvider provider = new LogglyProvider(SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"]);
+			ILogProvider provider = GetProviderFromSettings();
 			Logger.SetDefaultLogger(provider);
 			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationStartup" }, { "Time", DateTime.UtcNow.ToString() } }, null);
+		}
+
+		protected void Application_BeginRequest() {
+			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationRequest" }, { "UserAgent", Request.UserAgent }, { "Time", DateTime.UtcNow.ToString() } }, null);
+		}
+
+		protected void Application_Error(Object sender, System.EventArgs e) {
+			System.Web.HttpContext context = HttpContext.Current;
+			System.Exception exc = Context.Server.GetLastError();
+
+			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationError" }, { "Exception", exc.ToString() }, { "Time", DateTime.UtcNow.ToString() } }, null);
+		}
+
+		protected ILogProvider GetProviderFromSettings() {
+			SensitiveSettings.SettingsManager.LoadFrom(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"bin\"));
+			string provider = "null";
+			if (SensitiveSettings.SettingsManager.Settings.ContainsKey("LogProvider")) {
+				provider = SensitiveSettings.SettingsManager.Settings["LogProvider"];
+			}
+
+			switch (provider.ToUpper()) { 
+				case "LOGGLY":
+					return new LogglyProvider(SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"]);
+				default:
+					return new NullLogProvider();
+			}
+			
 		}
 	}
 }

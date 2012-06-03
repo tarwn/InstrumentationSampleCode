@@ -50,6 +50,7 @@
     <Compile Include="ILogProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LogglyProvider.cs" />
+    <Compile Include="NullLogProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
