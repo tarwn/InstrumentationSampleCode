@@ -58,3 +58,4 @@ packages/
 
 # visual studio database projects
 *.dbmdl
+/sensitive.config
