@@ -15,7 +15,7 @@ namespace Logging {
 
 		public void Log(Dictionary<string, string> message, Action<Communications.Result> callback) {
 			var request = new HttpJsonPost(message);
-			request.Send(_baseUrl, "POST", callback);
+			request.SendAsync(_baseUrl, "POST", callback);
 		}
 
 	}
