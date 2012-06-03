@@ -19,8 +19,12 @@ namespace SensitiveSettings {
 			}
 		}
 
-		private static void LoadSettings(){
-			string content = File.ReadAllText("sensitive.config");
+		public static void LoadFrom(string path) {
+			LoadSettings(path);
+		}
+
+        private static void LoadSettings(string pathPrefix = ""){
+			string content = File.ReadAllText(pathPrefix + "sensitive.config");
 			_settings = new Dictionary<string, string>();
 			var lines = content.Replace("\r\n", "\n")
 							   .Split('\n')

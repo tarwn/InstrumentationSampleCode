@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogglyProviderIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensitiveSettingsTests.cs" />
   </ItemGroup>
@@ -53,6 +54,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{C60B8715-8246-4562-BC77-21647A82A014}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SensitiveSettings\SensitiveSettings.csproj">
       <Project>{C94D93E0-F394-4CC7-82D3-A4C303405AF2}</Project>
       <Name>SensitiveSettings</Name>

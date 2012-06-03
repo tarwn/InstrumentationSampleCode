@@ -5,7 +5,7 @@ using System.Text;
 using Logging.Communications;
 
 namespace Logging {
-	interface ILogProvider {
-		void Log(object message, Action<Result> callback);
+	public interface ILogProvider {
+		void Log(Dictionary<string, string> message, Action<Result> callback);
 	}
 }

@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Communications\ErrorResult.cs" />
-    <Compile Include="Communications\LogRequest.cs" />
+    <Compile Include="Communications\HttpJsonPost.cs" />
     <Compile Include="Communications\RequestState.cs" />
     <Compile Include="Communications\Result.cs" />
     <Compile Include="ILogProvider.cs" />
@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

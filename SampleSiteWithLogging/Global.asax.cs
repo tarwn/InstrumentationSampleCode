@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Logging;
 
 namespace SampleSiteWithLogging {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -30,6 +31,11 @@ namespace SampleSiteWithLogging {
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
+
+			SensitiveSettings.SettingsManager.LoadFrom(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"bin\"));
+			ILogProvider provider = new LogglyProvider(SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"]);
+			Logger.SetDefaultLogger(provider);
+			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationStartup" }, { "Time", DateTime.UtcNow.ToString() } }, null);
 		}
 	}
 }
