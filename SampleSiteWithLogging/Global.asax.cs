@@ -58,6 +58,8 @@ namespace SampleSiteWithLogging {
 			switch (provider.ToUpper()) { 
 				case "LOGGLY":
 					return new LogglyProvider(SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"]);
+				case "STORM":
+					return new StormProvider(SensitiveSettings.SettingsManager.Settings["Storm.BaseURL"], SensitiveSettings.SettingsManager.Settings["Storm.AccessToken"], SensitiveSettings.SettingsManager.Settings["Storm.ProjectId"]);
 				default:
 					return new NullLogProvider();
 			}

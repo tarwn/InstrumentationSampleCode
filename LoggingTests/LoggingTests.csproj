@@ -49,6 +49,7 @@
     <Compile Include="LogglyProviderIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensitiveSettingsTests.cs" />
+    <Compile Include="StormProviderIntegrationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
