@@ -22,7 +22,7 @@ namespace Logging {
 
 		public string FullUrl {
 			get {
-				return string.Format("{0}?index={1}&sourcetype=JSON", _baseUrl, _projectId);
+				return string.Format("{0}?index={1}&sourcetype=AppData", _baseUrl, _projectId);
 			}
 		}
 
