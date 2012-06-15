@@ -31,22 +31,26 @@ namespace Logging.Communications {
 			return request;
 		}
 
-		public void Send(string url, string method, Action<Result> callback) {
+		public void Send(string url, string method, Action<Result> callback, bool processResponse = true) {
 			var request = InitializeRequest(url, method);
 
 			using (var stream = request.GetRequestStream()) {
 				WriteMessage(stream);
 			}
 
-			ProcessResponse(() => request.GetResponse(), callback);
+			if (processResponse)
+				ProcessResponse(() => request.GetResponse(), callback);
+			else if (callback != null)
+				callback(new Result() { Success = true });
 		}
 
-		public void SendAsync(string url, string method, Action<Result> callback) {
+		public void SendAsync(string url, string method, Action<Result> callback, bool processResponse = true) {
 			var request = InitializeRequest(url, method);
 
 			var state = new RequestState() { 
 				Request = request,
-				Callback = callback
+				Callback = callback,
+				ProcessResponse = processResponse
 			};
 			request.BeginGetRequestStream(new AsyncCallback(GetRequestStream), state);
 		}
@@ -56,7 +60,10 @@ namespace Logging.Communications {
 			using (var postStream = state.Request.EndGetRequestStream(result)) {
 				WriteMessage(postStream);
 			}
-			state.Request.BeginGetResponse(GetResponseStream, state);
+			if(state.ProcessResponse)
+				state.Request.BeginGetResponse(GetResponseStream, state);
+			else if (state.Callback != null)
+				state.Callback(new Result() { Success = true });
 		}
 
 		private void GetResponseStream(IAsyncResult result) {
@@ -87,7 +94,7 @@ namespace Logging.Communications {
 				JsonSerializer.SerializeToStream(_message, stream);
 			}
 			else {
-				byte[] data = new System.Text.UTF8Encoding().GetBytes(string.Join(" ", _message.Select(m => String.Format("{0}={1}", m.Key, m.Value))));
+				byte[] data = new System.Text.UTF8Encoding().GetBytes(string.Join(" ", _message.Select(m => String.Format("{0}={1}", m.Key, m.Value))) + "\r\n");
 				stream.Write(data, 0, data.Length);
 			}
 		}

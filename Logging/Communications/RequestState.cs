@@ -10,5 +10,6 @@ namespace Logging.Communications {
 	public class RequestState {
 		public HttpWebRequest Request { get; set; }
 		public Action<Result> Callback { get; set; }
+		public bool ProcessResponse { get; set; }
 	}
 }

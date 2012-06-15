@@ -48,6 +48,7 @@
     <Compile Include="Communications\RequestState.cs" />
     <Compile Include="Communications\Result.cs" />
     <Compile Include="ILogProvider.cs" />
+    <Compile Include="LogentriesProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LogglyProvider.cs" />
     <Compile Include="NullLogProvider.cs" />
