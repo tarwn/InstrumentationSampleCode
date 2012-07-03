@@ -60,6 +60,8 @@ namespace SampleSiteWithLogging {
 					return new LogglyProvider(SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"]);
 				case "STORM":
 					return new StormProvider(SensitiveSettings.SettingsManager.Settings["Storm.BaseURL"], SensitiveSettings.SettingsManager.Settings["Storm.AccessToken"], SensitiveSettings.SettingsManager.Settings["Storm.ProjectId"]);
+				case "LOGENTRIES":
+					return new LogentriesProvider(SensitiveSettings.SettingsManager.Settings["logentries.BaseURL"], SensitiveSettings.SettingsManager.Settings["logentries.AccountKey"], SensitiveSettings.SettingsManager.Settings["logentries.Host"], SensitiveSettings.SettingsManager.Settings["logentries.Log"]);
 				default:
 					return new NullLogProvider();
 			}

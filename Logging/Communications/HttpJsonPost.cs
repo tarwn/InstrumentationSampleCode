@@ -60,10 +60,14 @@ namespace Logging.Communications {
 			using (var postStream = state.Request.EndGetRequestStream(result)) {
 				WriteMessage(postStream);
 			}
-			if(state.ProcessResponse)
+
+			if (state.ProcessResponse)
 				state.Request.BeginGetResponse(GetResponseStream, state);
-			else if (state.Callback != null)
-				state.Callback(new Result() { Success = true });
+			else {
+				state.Request.Abort();
+				if (state.Callback != null)
+					state.Callback(new Result() { Success = true });
+			}
 		}
 
 		private void GetResponseStream(IAsyncResult result) {
@@ -96,6 +100,7 @@ namespace Logging.Communications {
 			else {
 				byte[] data = new System.Text.UTF8Encoding().GetBytes(string.Join(" ", _message.Select(m => String.Format("{0}={1}", m.Key, m.Value))) + "\r\n");
 				stream.Write(data, 0, data.Length);
+				stream.Flush();
 			}
 		}
 	}
