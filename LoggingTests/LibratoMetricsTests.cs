@@ -35,11 +35,12 @@ namespace LoggingTests {
 			string token = SensitiveSettings.SettingsManager.Settings["librato.Token"];
 			string username = SensitiveSettings.SettingsManager.Settings["librato.Email"];
 
+			var rnd = new Random();
 			var metrics = new Metric[]{
-				new Metric() { MetricType = MetricType.Gauge,  Name = "UnitTest2",		 Value = new Random().NextDouble()			},
-				new Metric() { MetricType = MetricType.Gauge,  Name = "UnitTest3",		 Value = new Random().NextDouble()			},
-				new Metric() { MetricType = MetricType.Counter,Name = "UnitTestCounter1",Value = new Random().NextDouble()			},
-				new Metric() { MetricType = MetricType.Counter,Name = "UnitTestCounter2",Value = new Random().NextDouble()			}
+				new Metric() { MetricType = MetricType.Gauge,  Name = "UnitTest2",		 Value = rnd.NextDouble()			},
+				new Metric() { MetricType = MetricType.Gauge,  Name = "UnitTest3",		 Value = rnd.NextDouble()			},
+				new Metric() { MetricType = MetricType.Counter,Name = "UnitTestCounter1",Value = (int)(100 * rnd.NextDouble())			},
+				new Metric() { MetricType = MetricType.Counter,Name = "UnitTestCounter2",Value = (int)(100 * rnd.NextDouble())			}
 			};
 
 			bool wasSuccess = false;
