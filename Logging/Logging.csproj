@@ -52,6 +52,7 @@
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogglyProvider.cs" />
     <Compile Include="Metrics\IMetricProvider.cs" />
+    <Compile Include="Metrics\LibratoMetricsProvider.cs" />
     <Compile Include="Metrics\Metric.cs" />
     <Compile Include="Metrics\MetricStore.cs" />
     <Compile Include="Log\NullLogProvider.cs" />

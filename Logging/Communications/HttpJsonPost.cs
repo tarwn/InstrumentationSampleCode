@@ -9,14 +9,27 @@ using ServiceStack.Text;
 namespace Logging.Communications {
 	public class HttpJsonPost {
 
-		Dictionary<string,string> _message;
+		string _message;
 		NetworkCredential _credentials;
 		bool _useJson;
 
-		public HttpJsonPost(Dictionary<string, string> message, NetworkCredential credentials = null, bool useJson = true) {
+		public HttpJsonPost(string message, NetworkCredential credentials = null, bool useJson = true) {
 			_message = message;
 			_credentials = credentials;
 			_useJson = useJson;
+		}
+
+		public HttpJsonPost(Dictionary<string, string> message, NetworkCredential credentials = null, bool useJson = true) {
+			_message = ConvertToMessage(message, useJson);
+			_credentials = credentials;
+			_useJson = useJson;
+		}
+
+		private string ConvertToMessage(Dictionary<string, string> message, bool useJson) { 
+			if(useJson)
+				return JsonSerializer.SerializeToString(message);
+			else
+				return string.Join(" ", message.Select(m => String.Format("{0}={1}", m.Key, m.Value)));
 		}
 
 		private HttpWebRequest InitializeRequest(string url, string method) {
@@ -27,6 +40,9 @@ namespace Logging.Communications {
 			request.KeepAlive = false;
 			if (_credentials != null)
 				request.Credentials = _credentials;
+
+			if (_useJson)
+				request.ContentType = "application/json";
 
 			return request;
 		}
@@ -47,7 +63,7 @@ namespace Logging.Communications {
 		public void SendAsync(string url, string method, Action<Result> callback, bool processResponse = true) {
 			var request = InitializeRequest(url, method);
 
-			var state = new RequestState() { 
+			var state = new RequestState() {
 				Request = request,
 				Callback = callback,
 				ProcessResponse = processResponse
@@ -55,7 +71,7 @@ namespace Logging.Communications {
 			request.BeginGetRequestStream(new AsyncCallback(GetRequestStream), state);
 		}
 
-        private void GetRequestStream(IAsyncResult result) {
+		private void GetRequestStream(IAsyncResult result) {
 			var state = (RequestState)result.AsyncState;
 			using (var postStream = state.Request.EndGetRequestStream(result)) {
 				WriteMessage(postStream);
@@ -94,14 +110,15 @@ namespace Logging.Communications {
 		}
 
 		private void WriteMessage(Stream stream) {
-			if (_useJson) {
-				JsonSerializer.SerializeToStream(_message, stream);
-			}
-			else {
-				byte[] data = new System.Text.UTF8Encoding().GetBytes(string.Join(" ", _message.Select(m => String.Format("{0}={1}", m.Key, m.Value))) + "\r\n");
+			//if (_useJson) {
+			//    JsonSerializer.SerializeToStream(_message, stream);
+			//}
+			//else {
+				byte[] data = new System.Text.UTF8Encoding().GetBytes(_message + "\r\n");
 				stream.Write(data, 0, data.Length);
 				stream.Flush();
-			}
+			//}
 		}
 	}
+
 }
