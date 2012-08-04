@@ -31,9 +31,9 @@ namespace LoggingTests {
 
 		[Test, Explicit]
 		public void LibratoTest2() {
-			string url = SensitiveSettings.SettingsManager.Settings["librato.URL"];
-			string token = SensitiveSettings.SettingsManager.Settings["librato.Token"];
-			string username = SensitiveSettings.SettingsManager.Settings["librato.Email"];
+			string url = SensitiveSettings.SettingsManager.Settings["Librato.URL"];
+			string token = SensitiveSettings.SettingsManager.Settings["Librato.Token"];
+			string username = SensitiveSettings.SettingsManager.Settings["Librato.Email"];
 
 			var rnd = new Random();
 			var metrics = new Metric[]{
