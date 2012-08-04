@@ -19,6 +19,7 @@ namespace SampleSiteWithLogging.Attributes {
 
 		public override void OnActionExecuting(ActionExecutingContext filterContext) {
 			_startTime = DateTime.UtcNow;
+			_stopwatch.Reset();
 			_stopwatch.Start();
 		}
 
