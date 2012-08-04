@@ -6,7 +6,7 @@ using Logging.Communications;
 using System.Net.Sockets;
 using System.Net.Security;
 
-namespace Logging {
+namespace Logging.Log {
 	public class LogentriesProvider : ILogProvider {
 
 		private string _baseUrl;

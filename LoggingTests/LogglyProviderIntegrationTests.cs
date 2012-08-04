@@ -10,7 +10,7 @@ namespace LoggingTests {
 	[TestFixture]
 	public class LogglyProviderIntegrationTests {
 
-		[Test]
+		[Test, Explicit]
 		public void Log_BasicObjectSynchronously_ExecutesHttpPostSuccessfully() 
 		{
 			string url = SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"];

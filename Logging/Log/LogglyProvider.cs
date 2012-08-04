@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Logging.Communications;
 
-namespace Logging {
+namespace Logging.Log {
 	public class LogglyProvider : ILogProvider {
 
 		string _baseUrl;

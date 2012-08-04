@@ -5,7 +5,7 @@ using System.Text;
 using System.Net;
 using Logging.Communications;
 
-namespace Logging {
+namespace Logging.Log {
 	public class StormProvider : ILogProvider {
 
 		private string _baseUrl;

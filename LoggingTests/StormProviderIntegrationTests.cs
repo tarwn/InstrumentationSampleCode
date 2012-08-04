@@ -10,7 +10,7 @@ namespace LoggingTests {
 	[TestFixture]
 	public class StormProviderIntegrationTests {
 
-		[Test]
+		[Test, Explicit]
 		public void Log_BasicObjectSynchronously_ExecutesHttpPostSuccessfully() {
 			string url = SensitiveSettings.SettingsManager.Settings["Storm.BaseURL"];
 			string token = SensitiveSettings.SettingsManager.Settings["Storm.AccessToken"];

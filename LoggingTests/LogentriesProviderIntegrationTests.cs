@@ -10,7 +10,7 @@ namespace LoggingTests {
 	[TestFixture]
 	public class LogentriesProviderIntegrationTests {
 
-		[Test]
+		[Test, Explicit]
 		public void Log_BasicObjectSynchronously_ExecutesHttpPostSuccessfully() {
 			string url = SensitiveSettings.SettingsManager.Settings["logentries.BaseURL"];
 			string api = SensitiveSettings.SettingsManager.Settings["logentries.AccountKey"];

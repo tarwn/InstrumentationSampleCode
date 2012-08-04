@@ -5,7 +5,7 @@ using System.Text;
 using Logging.Communications;
 using System.Diagnostics;
 
-namespace Logging {
+namespace Logging.Log {
 	public class Logger {
 
 		private ILogProvider _logProvider;
