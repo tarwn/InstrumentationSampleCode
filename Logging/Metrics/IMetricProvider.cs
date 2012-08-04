@@ -5,7 +5,7 @@ using System.Text;
 using Logging.Communications;
 
 namespace Logging.Metrics {
-	interface IMetricProvider {
+	public interface IMetricProvider {
 		void Store(Metric metric, Action<Result> callback);
 		void Store(IEnumerable<Metric> metrics, Action<Result> callback);
 	}

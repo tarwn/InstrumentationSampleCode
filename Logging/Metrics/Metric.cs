@@ -5,6 +5,10 @@ using System.Text;
 
 namespace Logging.Metrics {
 	public class Metric {
+		public Metric() {
+			Source = Environment.MachineName;
+		}
+
 		public virtual MetricType MetricType { get; set; }
 		public double Value { get; set; }
 		public string Source { get; set; }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading;
 using Logging.Log;
+using SampleSiteWithLogging.Attributes;
 
 namespace SampleSiteWithLogging.Controllers {
 	public class HomeController : Controller {
@@ -15,17 +16,15 @@ namespace SampleSiteWithLogging.Controllers {
 			return View();
 		}
 
+		[TimedAction]
 		public ActionResult ShortOperation() {
-			using (var log = Logger.CaptureElapsedTime(new Dictionary<string, string> { { "Type", "SiteHit" }, { "Area", "HomeController" }, { "Method", "ShortOperation" } }, null)) {
-				return View("Index");
-			}
+			return View("Index");
 		}
 
+		[TimedAction]
 		public ActionResult LongOperation() {
-			using (var log = Logger.CaptureElapsedTime(new Dictionary<string, string> { { "Type", "SiteHit" }, { "Area", "HomeController" }, { "Method", "LongOperation" } }, null)) {
-				Thread.Sleep((int)(3000 * new Random().NextDouble()));
-				return View("Index");
-			}
+			Thread.Sleep((int)(3000 * new Random().NextDouble()));
+			return View("Index");
 		}
 
 	}

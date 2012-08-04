@@ -46,7 +46,7 @@ namespace Logging.Metrics {
 			var data = Labels.GroupJoin(metrics, lbl => lbl.MetricType, m => m.MetricType, 
 								(lbl, ms) => String.Format("\"{0}\":[ {1} ]",
 												lbl.Name,
-												String.Join(",", ms.Select(m =>String.Format("{{ \"name\": \"{0}\", \"value\": {1}}}", m.Name, m.Value)))
+												String.Join(",", ms.Select(m =>String.Format("{{ \"name\": \"{0}\", \"value\": {1}, \"source\": {2}}}", m.Name, m.Value, m.Source)))
 											))
 							.ToArray();
 

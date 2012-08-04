@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Logging.Log;
+using Logging.Metrics;
 
 namespace SampleSiteWithLogging {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -35,6 +36,10 @@ namespace SampleSiteWithLogging {
 			ILogProvider provider = GetProviderFromSettings();
 			Logger.SetDefaultLogger(provider);
 			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationStartup" }, { "Time", DateTime.UtcNow.ToString() } }, null);
+
+			IMetricProvider mprovider = GetMetricProviderFromSettings();
+			MetricStore.SetDefaultMetrics(mprovider);
+			MetricStore.Store("ApplicationStartup");
 		}
 
 		protected void Application_BeginRequest() {
@@ -66,6 +71,22 @@ namespace SampleSiteWithLogging {
 					return new NullLogProvider();
 			}
 			
+		}
+
+		protected IMetricProvider GetMetricProviderFromSettings() {
+			SensitiveSettings.SettingsManager.LoadFrom(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"bin\"));
+			string provider = "null";
+			if (SensitiveSettings.SettingsManager.Settings.ContainsKey("MetricProvider")) {
+				provider = SensitiveSettings.SettingsManager.Settings["MetricProvider"];
+			}
+
+			switch (provider.ToUpper()) {
+				case "LIBRATO":
+					return new LibratoMetricsProvider(SensitiveSettings.SettingsManager.Settings["Librato.URL"], SensitiveSettings.SettingsManager.Settings["Librato.Email"], SensitiveSettings.SettingsManager.Settings["Librato.Token"], true);
+				default:
+					return new NullMetricProvider();
+			}
+
 		}
 	}
 }
