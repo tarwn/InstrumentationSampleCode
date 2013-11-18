@@ -1,6 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1F89C58-6D29-4A1F-BAF6-0F90D7520993}"
+	ProjectSection(SolutionItems) = preProject
+		sensitive.config = sensitive.config
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSiteWithLogging", "SampleSiteWithLogging\SampleSiteWithLogging.csproj", "{3DCE79A0-64AF-4287-B3A3-5A2A8D4ECC57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{C60B8715-8246-4562-BC77-21647A82A014}"
@@ -8,11 +13,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingTests", "LoggingTests\LoggingTests.csproj", "{D6B75BD7-CCA3-4332-9BE9-DF555EEF365F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensitiveSettings", "SensitiveSettings\SensitiveSettings.csproj", "{C94D93E0-F394-4CC7-82D3-A4C303405AF2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1F89C58-6D29-4A1F-BAF6-0F90D7520993}"
-	ProjectSection(SolutionItems) = preProject
-		sensitive.config = sensitive.config
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
