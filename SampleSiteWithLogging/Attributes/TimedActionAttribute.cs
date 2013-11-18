@@ -33,7 +33,7 @@ namespace SampleSiteWithLogging.Attributes {
 			var elapsed = _stopwatch.ElapsedMilliseconds;
 
 			Dictionary<string,string> values = new Dictionary<string,string>(){
-				{"Time", _startTime.ToString()},
+				{"Time", _startTime.ToString("yyyy-MM-ddTHH:mm:ssZ")},
 				{"Controller", controller},
 				{"Action", action},
 				{"Elapsed", elapsed.ToString()}

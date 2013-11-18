@@ -35,7 +35,7 @@ namespace SampleSiteWithLogging {
 
 			ILogProvider provider = GetProviderFromSettings();
 			Logger.SetDefaultLogger(provider);
-			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationStartup" }, { "Time", DateTime.UtcNow.ToString() } }, null);
+			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationStartup" }, { "Time", DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") } }, null);
 
 			IMetricProvider mprovider = GetMetricProviderFromSettings();
 			MetricStore.SetDefaultMetrics(mprovider);
@@ -43,14 +43,14 @@ namespace SampleSiteWithLogging {
 		}
 
 		protected void Application_BeginRequest() {
-			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationRequest" }, { "UserAgent", Request.UserAgent }, { "Time", DateTime.UtcNow.ToString() } }, null);
+			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationRequest" }, { "UserAgent", Request.UserAgent }, { "Time", DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") } }, null);
 		}
 
 		protected void Application_Error(Object sender, System.EventArgs e) {
 			System.Web.HttpContext context = HttpContext.Current;
 			System.Exception exc = Context.Server.GetLastError();
 
-			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationError" }, { "Exception", exc.ToString() }, { "Time", DateTime.UtcNow.ToString() } }, null);
+			Logger.Log(new Dictionary<string, string>() { { "Type", "ApplicationError" }, { "Exception", exc.ToString() }, { "Time", DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") } }, null);
 		}
 
 		protected ILogProvider GetProviderFromSettings() {

@@ -22,13 +22,13 @@ namespace Logging.Log {
 
 		public string FullUrl {
 			get {
-				return string.Format("{0}?index={1}&sourcetype=AppData", _baseUrl, _projectId);
+                return string.Format("{0}/1/inputs/http?index={1}&sourcetype=json_auto_timestamp", _baseUrl, _projectId);
 			}
 		}
 
 		public void Log(Dictionary<string, string> message, Action<Communications.Result> callback) {
-			var credentials = new NetworkCredential(_accessToken, "x");
-			var request = new HttpJsonPost(message, credentials, false);
+			var credentials = new NetworkCredential("x", _accessToken, "");
+			var request = new HttpJsonPost(message, credentials, true);
 			if (_sendAsync)
 				request.SendAsync(FullUrl, "POST", callback);
 			else
