@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScalyrProviderIntegrationTests.cs" />
     <Compile Include="LibratoMetricsTests.cs" />
     <Compile Include="LogentriesProviderIntegrationTests.cs" />
     <Compile Include="LogglyProviderIntegrationTests.cs" />

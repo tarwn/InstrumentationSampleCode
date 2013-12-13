@@ -56,6 +56,7 @@
     <Compile Include="Log\LogentriesProvider.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogglyProvider.cs" />
+    <Compile Include="Log\ScalyrProvider.cs" />
     <Compile Include="Metrics\IMetricProvider.cs" />
     <Compile Include="Metrics\LibratoMetricsProvider.cs" />
     <Compile Include="Metrics\Metric.cs" />

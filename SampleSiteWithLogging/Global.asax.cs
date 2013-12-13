@@ -63,11 +63,13 @@ namespace SampleSiteWithLogging {
 			switch (provider.ToUpper()) { 
 				case "LOGGLY":
 					return new LogglyProvider(SensitiveSettings.SettingsManager.Settings["Loggly.BaseURL"]);
-				case "STORM":
-					return new StormProvider(SensitiveSettings.SettingsManager.Settings["Storm.BaseURL"], SensitiveSettings.SettingsManager.Settings["Storm.AccessToken"], SensitiveSettings.SettingsManager.Settings["Storm.ProjectId"]);
-				case "LOGENTRIES":
+                case "STORM":
+                    return new StormProvider(SensitiveSettings.SettingsManager.Settings["Storm.BaseURL"], SensitiveSettings.SettingsManager.Settings["Storm.AccessToken"], SensitiveSettings.SettingsManager.Settings["Storm.ProjectId"]);
+                case "LOGENTRIES":
 					return new LogentriesProvider(SensitiveSettings.SettingsManager.Settings["logentries.BaseURL"], SensitiveSettings.SettingsManager.Settings["logentries.AccountKey"], SensitiveSettings.SettingsManager.Settings["logentries.Host"], SensitiveSettings.SettingsManager.Settings["logentries.Log"]);
-				default:
+                case "SCALYR":
+                    return new ScalyrProvider(SensitiveSettings.SettingsManager.Settings["Scalyr.BaseURL"], SensitiveSettings.SettingsManager.Settings["Scalyr.WriteLogsToken"]);
+                default:
 					return new NullLogProvider();
 			}
 			
